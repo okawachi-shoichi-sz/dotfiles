@@ -3,7 +3,7 @@
 ## KeyBind
 ### tmux
 
-prefix : <C-t>  
+prefix : <C+t>  
 
 水平分割 : -  
 垂直分割 : \  
@@ -17,14 +17,12 @@ prefix : <C-t>
 #
 ### vim
 
-prefix : s
+prefix : s  
 
 水平分割 : -  
 垂直分割 : \  
 
-新規タブ : t
-
-タブ移動  
+ペイン移動  
 上 : k  
 下 : j  
 左 : l  
@@ -36,10 +34,14 @@ prefix : s
 左 : L  
 右 : H  
 
+新規タブ : t  
+次のタブへ : n  
+前のタブへ : p  
+
 :q : q  
 :w : w  
 :wq : wq  
-:q! : Q
+:q! : Q  
 
 ファイルツリー : <Space+n>(prefixなし)  
 
