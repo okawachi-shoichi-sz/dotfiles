@@ -62,7 +62,7 @@ endif
 "*****************************************************************************
 "" NeoBundle install packages
 "*****************************************************************************
-NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'ErichDonGubler/vim-sublime-monokai'
 
 ""FileTree
 NeoBundle 'scrooloose/nerdtree'
@@ -117,7 +117,7 @@ NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'Yggdroot/indentLine'
 
 "" HTML/CSS
-NeoBundle 'amirh/HTML-AutoCloseTag'
+NeoBundle 'vim-scripts/HTML-AutoCloseTag'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'mattn/emmet-vim'
@@ -200,8 +200,7 @@ let g:vim_json_syntax_conceal=0
 "*****************************************************************************
 syntax enable
 set background=dark
-colorscheme solarized
-set number
+colorscheme sublimemonokai
 set ruler
 
 "*****************************************************************************
@@ -209,6 +208,7 @@ set ruler
 "*****************************************************************************
 "" NERDTree
 let g:NERDTreeChDirMode=2
+let NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', 'node_modules', 'bower_components']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
@@ -435,9 +435,11 @@ nnoremap sN :<C-u>bn<CR>
 nnoremap sP :<C-u>bp<CR>
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sT :<C-u>Unite tab<CR>
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
+nnoremap s- :<C-u>sp<CR>
+nnoremap s\ :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
+nnoremap sw :<C-u>w<CR>
+nnoremap swq :<C-u>wq<CR>
 nnoremap sQ :<C-u>bd<CR>
 
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
