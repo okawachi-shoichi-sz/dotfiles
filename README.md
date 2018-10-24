@@ -3,7 +3,7 @@
 ## KeyBind
 ### tmux
 
-prefix : <C-t>
+prefix :<C-t>
 
 水平分割 : -  
 垂直分割 : \  
