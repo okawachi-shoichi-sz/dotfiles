@@ -3,7 +3,7 @@
 ## KeyBind
 ### tmux
 
-prefix :<C-t>
+prefix : <C-t>  
 
 水平分割 : -  
 垂直分割 : \  
@@ -39,6 +39,7 @@ prefix : s
 :q : q  
 :w : w  
 :wq : wq  
+:q! : Q
 
 ファイルツリー : <Space+n>(prefixなし)  
 
