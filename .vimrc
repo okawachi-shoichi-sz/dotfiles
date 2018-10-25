@@ -30,8 +30,8 @@ if !filereadable(solarized_vim)
 
   silent !mkdir -p ~/.vim/colors
   silent !mkdir -p ~/.vim/tmp
-  silent !git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/tmp/solarized
-  !mv ~/.vim/tmp/solarized/colors/solarized.vim ~/.vim/colors/
+  silent !git clone https://github.com/ErichDonGubler/vim-sublime-monokai.git ~/.vim/tmp/sublimemonokai
+  !mv ~/.vim/tmp/sublimemonokai/colors/sublimemonokai.vim ~/.vim/colors/
 endif
 
 " Required:
@@ -57,6 +57,8 @@ elseif has('win32')
   let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win32.dll'
 elseif has('win64')
   let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win64.dll'
+elseif has('unix')
+  let g:vimproc_dll_path = $HOME."/.vim/autoload/procunix.so"
 endif
 
 "*****************************************************************************
