@@ -9,7 +9,7 @@ if has('vim_starting')
 endif
 
 let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-let solarized_vim=expand('~/.vim/colors/solarized.vim')
+let sublimemonokai_vim=expand('~/.vim/colors/sublimemonokai.vim')
 
 let g:vim_bootstrap_langs = "javascript,ruby,python,html,go"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
@@ -24,8 +24,8 @@ if !filereadable(neobundle_readme)
   " Run shell script if exist on custom select language
 endif
 
-if !filereadable(solarized_vim)
-  echo "Installing Solarized Theme..."
+if !filereadable(sublimemonokai_vim)
+  echo "Installing sublimemonokai Theme..."
   echo ""
 
   silent !mkdir -p ~/.vim/colors
