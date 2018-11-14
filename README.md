@@ -2,9 +2,9 @@
 
 use ubuntu18.04
 
-その他のOSについては各々カスタマイズしてください。　　
-多分macではだいたい動くと思う(Clipboardの共有だけ違うかも？)　　
-windowsはパス周りとClipboardの周辺直せば動くと思う。　　
+その他のOSについては各々カスタマイズしてください。  
+多分macではだいたい動くと思う(Clipboardの共有だけ違うかも？)  
+windowsはパス周りとClipboardの周辺直せば動くと思う。  
 
 ```
 sudo apt-get install xsel
