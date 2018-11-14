@@ -58,7 +58,7 @@ elseif has('win32')
 elseif has('win64')
   let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win64.dll'
 elseif has('unix')
-  let g:vimproc_dll_path = $HOME."/.vim/autoload/procunix.so"
+  let g:vimproc_dll_path = $HOME."/.vim/bundle/vimproc.vim/lib/vimproc_linux64.so"
 endif
 
 "*****************************************************************************
@@ -76,8 +76,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'windows' : 'tools\\update-dll-mingw',
 \     'cygwin' : 'make -f make_cygwin.mak',
 \     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make -f make_mac.mak',
-\     'unix' : 'gmake -f make_mac.mak',
+\     'linux' : 'make -f make_unix.mak',
+\     'unix' : 'gmake -f make_unix.mak',
 \    },
 \ }
 
