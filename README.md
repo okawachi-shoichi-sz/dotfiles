@@ -87,7 +87,8 @@ vで選択した文字列を任意の文字で囲う　:　S<任意の文字>(pr
  - indent可視化
  - AutoCloseTag
  - surround
- 
+
+ 邪魔だったのでカーソルの点滅をなくし、対応する括弧を強調する際に、現在位置のカーソル色を見やすく変更した。
 
 ### 参考
  [IDEっぽいvim環境を構築する.vimrcを書いた](https://qiita.com/ysm001/items/8ae97cfdaae3f5fe79f4)
