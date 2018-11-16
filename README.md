@@ -60,6 +60,14 @@ prefix : s
 
 :q : q  
 :w : w  
+:w : <C-s> (prefixなし)  
+※.bashrcに
+
+```
+stty stop undef
+stty start undef
+```
+の設定が必要。  
 :wq : wq  
 :q! : Q  
 
