@@ -60,8 +60,7 @@ prefix : s
 
 :q : q  
 :w : w
-
-:w : <C-s>(prefixなし)  
+:w : \<C-s\>(prefixなし)  
 
 ※.bashrcに
 
