@@ -59,8 +59,10 @@ prefix : s
 前のタブへ : p  
 
 :q : q  
-:w : w  
+:w : w
+
 :w : <C-s>(prefixなし)  
+
 ※.bashrcに
 
 ```
