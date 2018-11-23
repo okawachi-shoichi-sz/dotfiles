@@ -1,0 +1,19 @@
+if [[ ! -n $TMUX ]]; then
+  # get the IDs
+  ID="`tmux ls`"
+  if [[ -z "$ID" ]]; then
+    tmux new-session
+  fi
+  create_new_session="Create New Session"
+  ID="$ID\n${create_new_session}:"
+  ID="`echo -e $ID | peco | cut -d: -f1`"
+  if [[ "$ID" = "${create_new_session}" ]]; then
+    tmux
+  fi
+  tmux a -t "$ID"
+fi
+
+stty stop undef
+stty start undef
+
+
