@@ -6,7 +6,7 @@ if [[ ! -n $TMUX ]]; then
   fi
   create_new_session="Create New Session"
   ID="$ID\n${create_new_session}:"
-  ID="`echo -e $ID | peco | cut -d: -f1`"
+  ID="`echo -e "$ID" | peco | cut -d: -f1`"
   if [[ "$ID" = "${create_new_session}" ]]; then
     tmux
   fi
@@ -16,4 +16,4 @@ fi
 stty stop undef
 stty start undef
 
-
+source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash
