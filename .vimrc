@@ -52,7 +52,7 @@ endfunction
 "" VimProc DLL Path
 "*****************************************************************************
 if has('mac')
-  let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
+  let g:vimproc_dll_path = $HOME.'/.vim/bundle/vimproc.vim/lib/vimproc_mac.so'
 elseif has('win32')
   let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win32.dll'
 elseif has('win64')
@@ -146,6 +146,9 @@ NeoBundle 'smerrill/vcl-vim-plugin'
 ""submode
 NeoBundle 'kana/vim-submode'
 
+""editorconfig
+NeoBundle 'editorconfig/editorconfig-vim'
+
 call neobundle#end()
 
 " Required:
@@ -159,6 +162,9 @@ NeoBundleCheck
 "" Basic Setup
 "*****************************************************************************"
 let mapleader="\<Space>"
+
+""column number
+set number
 
 "" Encoding
 set encoding=utf-8
@@ -225,7 +231,7 @@ noremap <leader>n :NERDTreeTabsToggle<CR>
 """ Mappings
 "*****************************************************************************
 "" Copy/Paste/Cut
-set clipboard=unnamed,unnamedplus
+set clipboard+=unnamed
 
 "******************
 "" neosnippet
