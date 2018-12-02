@@ -52,7 +52,7 @@ endfunction
 "" VimProc DLL Path
 "*****************************************************************************
 if has('mac')
-  let g:vimproc_dll_path = $HOME.'/.vim/bundle/vimproc.vim/lib/vimproc_mac.so'
+  let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
 elseif has('win32')
   let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win32.dll'
 elseif has('win64')
@@ -89,6 +89,12 @@ else
 	NeoBundle 'Shougo/neocomplcache'
 	"" NeoBundle 'Shougo/neocomplcache-rsense.vim', {'depends': ['Shougo/neocomplcache.vim', 'marcus/rsense'],}
 endif
+
+""コメント
+NeoBundle 'tomtom/tcomment_vim'
+
+""選択移動
+NeoBundle 't9md/vim-textmainip'
 
 "" スニペット
 NeoBundle 'Shougo/neosnippet'
@@ -146,9 +152,6 @@ NeoBundle 'smerrill/vcl-vim-plugin'
 ""submode
 NeoBundle 'kana/vim-submode'
 
-""editorconfig
-NeoBundle 'editorconfig/editorconfig-vim'
-
 call neobundle#end()
 
 " Required:
@@ -163,7 +166,7 @@ NeoBundleCheck
 "*****************************************************************************"
 let mapleader="\<Space>"
 
-""column number
+""row number
 set number
 
 "" Encoding
@@ -231,7 +234,7 @@ noremap <leader>n :NERDTreeTabsToggle<CR>
 """ Mappings
 "*****************************************************************************
 "" Copy/Paste/Cut
-set clipboard+=unnamed
+set clipboard=unnamed,unnamedplus
 
 "******************
 "" neosnippet
@@ -432,6 +435,24 @@ if has('vim_starting')
   " 置換モード時に非点滅の下線タイプのカーソル
   let &t_SR .= "\e[4 q"
 endif
+
+"****************************************************************************
+"Text mainip
+"****************************************************************************"
+xmap <Space>d <Plug>(textmanip-duplicate-down)
+nmap <Space>d <Plug>(textmanip-duplicate-down)
+xmap <Space>D <Plug>(textmanip-duplicate-up)
+nmap <Space>D <Plug>(textmanip-duplicate-up)
+
+xmap <C-j> <Plug>(textmanip-move-down)
+xmap <C-k> <Plug>(textmanip-move-up)
+xmap <C-h> <Plug>(textmanip-move-left)
+xmap <C-l> <Plug>(textmanip-move-right)
+
+" toggle insert/replace with <F10>
+nmap <F10> <Plug>(textmanip-toggle-mode)
+xmap <F10> <Plug>(textmanip-toggle-mode)
+
 "*****************************************************************************
 " KeyMap
 "*****************************************************************************"
