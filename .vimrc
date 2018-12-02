@@ -169,7 +169,13 @@ let mapleader="\<Space>"
 ""row number
 set number
 
-""file name
+"" filename
+set statusline=%f
+set statusline+=%=
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']'}
+set statusline+=[LOW=%l/%L]
+
+" ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
 set laststatus=2
 
 "" Encoding
@@ -216,6 +222,8 @@ syntax enable
 set background=dark
 colorscheme sublimemonokai
 set ruler
+highlight StatusLine ctermfg=250 ctermbg=0
+highlight StatusLineNC ctermfg=0 ctermbg=250 
 
 "*****************************************************************************
 "" Abbreviations
