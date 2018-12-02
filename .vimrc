@@ -94,7 +94,7 @@ endif
 NeoBundle 'tomtom/tcomment_vim'
 
 ""選択移動
-NeoBundle 't9md/vim-textmainip'
+NeoBundle 't9md/vim-textmanip'
 
 "" スニペット
 NeoBundle 'Shougo/neosnippet'
@@ -168,6 +168,9 @@ let mapleader="\<Space>"
 
 ""row number
 set number
+
+""file name
+set laststatus=2
 
 "" Encoding
 set encoding=utf-8
@@ -437,7 +440,7 @@ if has('vim_starting')
 endif
 
 "****************************************************************************
-"Text mainip
+"Text manip
 "****************************************************************************"
 xmap <Space>d <Plug>(textmanip-duplicate-down)
 nmap <Space>d <Plug>(textmanip-duplicate-down)
