@@ -52,13 +52,13 @@ endfunction
 "" VimProc DLL Path
 "*****************************************************************************
 if has('mac')
-  let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
+  let g:vimproc_dll_path = $HOME . '/.vim/bundle/vimproc.vim//lib/vimproc_mac.so'
 elseif has('win32')
   let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win32.dll'
 elseif has('win64')
   let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win64.dll'
 elseif has('unix')
-  let g:vimproc_dll_path = $HOME."/.vim/bundle/vimproc.vim/lib/vimproc_linux64.so"
+  let g:vimproc_dll_path = $HOME . '/.vim/bundle/vimproc.vim/lib/vimproc_linux64.so'
 endif
 
 "*****************************************************************************
@@ -223,7 +223,7 @@ set background=dark
 colorscheme sublimemonokai
 set ruler
 highlight StatusLine ctermfg=250 ctermbg=0
-highlight StatusLineNC ctermfg=0 ctermbg=250 
+highlight StatusLineNC ctermfg=0 ctermbg=250
 
 "*****************************************************************************
 "" Abbreviations
@@ -282,9 +282,9 @@ else
   let g:neocomplcache_enable_underbar_completion = 1
 endif
 
-" <TAB>: completion.                                         
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"   
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "******************
 
 "******************
@@ -307,7 +307,7 @@ if has("path_extra")
   set tags+=tags;
 endif
 
-nnoremap <C-]> g<C-]> 
+nnoremap <C-]> g<C-]>
 "******************
 
 "******************
@@ -421,7 +421,7 @@ set nowrap
 
 " file is large from 10mb
 let g:LargeFile = 1024 * 100
-augroup LargeFile 
+augroup LargeFile
   autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
 augroup END
 
