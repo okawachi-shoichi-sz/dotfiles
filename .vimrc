@@ -494,6 +494,7 @@ nnoremap sw :<C-u>w<CR>
 nnoremap swq :<C-u>wq<CR>
 nnoremap sQ :<C-u>q!<CR>
 nnoremap <C-s> :<C-u>w<CR>
+nnoremap <C-n> :<C-u>noh<CR>
 
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
