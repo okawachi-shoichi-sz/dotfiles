@@ -495,6 +495,11 @@ nnoremap swq :<C-u>wq<CR>
 nnoremap sQ :<C-u>q!<CR>
 nnoremap <C-s> :<C-u>w<CR>
 nnoremap <C-n> :<C-u>noh<CR>
+nnoremap <C-h> :if exists("g:syntax_on") <Bar>              
+                \   syntax off <Bar>                             
+                \ else <Bar>                                     
+                \   syntax enable <Bar>                                  
+                \ endif <CR>  
 
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
