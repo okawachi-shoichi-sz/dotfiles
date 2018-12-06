@@ -478,13 +478,13 @@ nnoremap sL <C-w>L
 nnoremap sH <C-w>H
 nnoremap sn gt
 nnoremap sp gT
+nnoremap sN :<C-u>tubm +1<CR>
+nnoremap sP :<C-u>tubm -1<CR>
 nnoremap sr <C-w>r
 nnoremap s= <C-w>=
 nnoremap sw <C-w>w
 nnoremap so <C-w>_<C-w>|
 nnoremap sO <C-w>=
-nnoremap sN :<C-u>bn<CR>
-nnoremap sP :<C-u>bp<CR>
 nnoremap st :<C-u>tabnew<CR>
 nnoremap sT :<C-u>Unite tab<CR>
 nnoremap s- :<C-u>sp<CR>
@@ -495,11 +495,11 @@ nnoremap swq :<C-u>wq<CR>
 nnoremap sQ :<C-u>q!<CR>
 nnoremap <C-s> :<C-u>w<CR>
 nnoremap <C-n> :<C-u>noh<CR>
-nnoremap <C-h> :if exists("g:syntax_on") <Bar>              
-                \   syntax off <Bar>                             
-                \ else <Bar>                                     
-                \   syntax enable <Bar>                                  
-                \ endif <CR>  
+nnoremap <C-h> :if exists("g:syntax_on") <Bar>
+                \   syntax off <Bar>
+                \ else <Bar>
+                \   syntax enable <Bar>
+                \ endif <CR>
 
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
