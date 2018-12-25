@@ -230,6 +230,17 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 
+"******************
+"" neocomplete
+"******************
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_ignore_case = 1
+let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#keyword_patterns')
+let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns._ = '\h\w*'
+
 "*****************
 " lint
 "*****************"
@@ -368,10 +379,17 @@ xmap <C-l> <Plug>(textmanip-move-right)
 nmap <F10> <Plug>(textmanip-toggle-mode)
 xmap <F10> <Plug>(textmanip-toggle-mode)
 
+"****************************************************************************
+" Translate
+"***************************************************************************"
+let s:trans_cmd = 'trans'
+let s:trans_opt = '-b :en --no-ansi -e google'
+exec 'command! -nargs=0 -range Trans <line1>,<line2>!' . s:trans_cmd . ' ' . s:trans_opt
+nnoremap <C-e> :Trans<CR>
 
 "*****************************************************************************
 " KeyMap
-"*****************************************************************************"
+"****************************************************************************"
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
