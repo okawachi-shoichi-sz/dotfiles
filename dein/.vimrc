@@ -368,10 +368,17 @@ xmap <C-l> <Plug>(textmanip-move-right)
 nmap <F10> <Plug>(textmanip-toggle-mode)
 xmap <F10> <Plug>(textmanip-toggle-mode)
 
+"****************************************************************************
+" Translate
+"***************************************************************************"
+let s:trans_cmd = 'trans'
+let s:trans_opt = '-b :en --no-ansi -e google'
+exec 'command! -nargs=0 -range Trans <line1>,<line2>!' . s:trans_cmd . ' ' . s:trans_opt
+nnoremap <C-e> :Trans<CR>
 
 "*****************************************************************************
 " KeyMap
-"*****************************************************************************"
+"****************************************************************************"
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k

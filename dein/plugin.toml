@@ -14,8 +14,6 @@ repo = 'scrooloose/nerdtree'
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
 depends = 'scrooloose/nerdtree'
-hook_add = '''
-'''
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
