@@ -1,17 +1,26 @@
 # dotfiles
 
-use ubuntu18.04
+windowsでの使用は想定してないのであしからず。
 
-その他のOSについては各々カスタマイズしてください。  
-多分macではだいたい動くと思う(Clipboardの共有だけ違うかも？)  
-windowsはパス周りとClipboardの周辺直せば動くと思う。  
+all
 
 ```
-sudo apt-get install xsel
-git clone https://github.com/shoichi1023/dotfiles.git
-cp ./dotfiles/.tmux.conf ~/
-cp ./dotfiles/.vimrc ~/
-vi
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+and please add the contents of .bashrc_add to .bashrc
+
+
+ubuntu
+
+```
+sudo apt-get install -y xsel ctags peco
+```
+
+mac
+
+```
+brew install ctags peco
 ```
 
 in vim
@@ -34,6 +43,11 @@ prefix : <C+t>
 左 : l  
 右 : h  
 
+新規window：c
+前のwindowへ移動：p
+次のwindowへ移動：n
+session一覧：s
+
 #
 ### vim
 
@@ -42,21 +56,19 @@ prefix : s
 水平分割 : -  
 垂直分割 : \  
 
-ペイン移動  
-上 : k  
-下 : j  
-左 : l  
-右 : h  
+ペイン移動：(kjlh)
+
+ペインごと移動：(KJLH)
 
 タブ幅  
-上 : K  
-下 : J  
-左 : L  
-右 : H  
+左 : >  
+右 : <   
 
 新規タブ : t  
 次のタブへ : n  
 前のタブへ : p  
+タブの位置を一つ後に：N
+タブの位置を一つ前に：P
 
 :q : q  
 :w : w  
@@ -72,10 +84,6 @@ stty start undef
 :wq : wq  
 :q! : Q  
 
-ファイルツリー : <Space+n>(prefixなし)  
-
-コードの展開 : <Space+k>(prefixなし)  
-
 Tagバーを表示 : <Space+t>(prefixなし)   
 
 vで選択した文字列を任意の文字で囲う　:　S<任意の文字>(prefixなし)  
@@ -83,9 +91,20 @@ vで選択した文字列を任意の文字で囲う　:　S<任意の文字>(pr
 囲われた文字列の囲いを外す　:　ds<今囲われている文字>(prefixなし)  
 一単語を任意の文字で囲う　:　ysiw<任意の文字>(prefixなし)  
 
-vで選択して移動 ：　\<C-(hjkl)>(prefixなし)
+vで選択して移動 ：　\<C-(hjkl)>(prefixなし)  
 
-コメント切り替え ：　\<C- _ >\<C- _ >(prefixなし)
+コメント切り替え ：　\<C- _ >\<C- _ >(prefixなし)  
+
+mdプレビュー：<C+p>(prefixなし)  
+ctag生成：<C+c>(prefixなし)  
+fix-fomat(js)：(保存した後)<C+f>(prefixなし)  
+
+ファイルツリー : <Space+n>(prefixなし)  
+ファイルツリー上で  
+分割して開く：s  
+新規タブで開く：t  
+ファイル操作：m  
+
 
 ### 機能
 

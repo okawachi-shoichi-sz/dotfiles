@@ -1,43 +1,56 @@
-"*****************************************************************************
-" NeoBundle core
-"*****************************************************************************
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
+" 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " プラグインリストを収めた TOML ファイル
+  " 予め TOML ファイル（後述）を用意しておく
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/plugin.toml'
+  "let s:lazy_toml = g:rc_dir . '/plugin_lazy.toml'
+
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  "call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
+endif
+
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
+
 let sublimemonokai_vim=expand('~/.vim/colors/sublimemonokai.vim')
 
 let g:vim_bootstrap_langs = "javascript,ruby,python,html,go"
 let g:vim_bootstrap_editor = "vim"
 
-if !filereadable(neobundle_readme)
-  echo "Installing NeoBundle..."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
-  let g:not_finsh_neobundle = "yes"
-
-  " Run shell script if exist on custom select language
-endif
 
 if !filereadable(sublimemonokai_vim)
-  echo "Installing sublimemonokai Theme..."
+  echo "installing sublimemonokai theme..."
   echo ""
 
   silent !mkdir -p ~/.vim/colors
   silent !mkdir -p ~/.vim/tmp
-  silent !git clone https://github.com/ErichDonGubler/vim-sublime-monokai.git ~/.vim/tmp/sublimemonokai
+  silent !git clone https://github.com/erichdongubler/vim-sublime-monokai.git ~/.vim/tmp/sublimemonokai
   !mv ~/.vim/tmp/sublimemonokai/colors/sublimemonokai.vim ~/.vim/colors/
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
 
 "*****************************************************************************
 """ Functions
@@ -59,109 +72,9 @@ elseif has('unix')
   let g:vimproc_dll_path = $HOME."/.vim/bundle/vimproc.vim/lib/vimproc_linux64.so"
 endif
 
-"*****************************************************************************
-"" NeoBundle install packages
-"*****************************************************************************
-NeoBundle 'ErichDonGubler/vim-sublime-monokai'
-
-""FileTree
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-
-"" vimproc
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make -f make_unix.mak',
-\     'unix' : 'gmake -f make_unix.mak',
-\    },
-\ }
-
-"" 補完
-if s:meet_neocomplete_requirements()
-  NeoBundle 'Shougo/neocomplete'
-	"" NeoBundle 'supermomonga/neocomplete-rsense.vim', {'depends': ['Shougo/neocomplete.vim', 'marcus/rsense'],}
-else
-	NeoBundle 'Shougo/neocomplcache'
-	"" NeoBundle 'Shougo/neocomplcache-rsense.vim', {'depends': ['Shougo/neocomplcache.vim', 'marcus/rsense'],}
-endif
-
-"" スニペット
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'honza/vim-snippets'
-
-"" ctags
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'szw/vim-tags'
-
-NeoBundle 'tpope/vim-endwise'
-
-"" 構文チェック
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
-
-"" markdownプレビュー
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'kannokanno/previm'
-NeoBundle 'tyru/open-browser.vim'
-
-"" python構文・コーディング規約チェック
-NeoBundle 'Flake8-vim'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'hynek/vim-python-pep8-indent'
-
-"" indent可視化
-NeoBundle 'Yggdroot/indentLine'
-
-"" HTML/CSS
-NeoBundle 'vim-scripts/HTML-AutoCloseTag'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'mattn/emmet-vim'
-
-NeoBundle 'tpope/vim-surround'
-
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'ruanyl/vim-fixmyjs'
-
-"" JSON syntax
-NeoBundle 'elzr/vim-json'
-
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'jason0x43/vim-js-indent'
-
-"" mustache / handlebars
-NeoBundle 'mustache/vim-mustache-handlebars'
-
-"" nodejs補完
-NeoBundle 'myhere/vim-nodejs-complete'
-
-"" VCL
-NeoBundle 'smerrill/vcl-vim-plugin'
-
-""submode
-NeoBundle 'kana/vim-submode'
-
-""editorconfig
-NeoBundle 'editorconfig/editorconfig-vim'
-
-""comment
-NeoBundle 'tomtom/tcomment_vim'
-
-""visualize move
-NeoBundle 't9md/vim-textmanip'
-
-call neobundle#end()
 
 " Required:
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 "*****************************************************************************
 "" Basic Setup
@@ -208,6 +121,11 @@ set showcmd
 set shell=/bin/sh
 
 set whichwrap=h,l,b,s,<,>,[,]
+
+"" mdの修飾記号を消さない
+let g:vim_markdown_conceal = 0
+"" 折りたたまない
+let g:vim_markdown_folding_disabled = 1
 
 "" JSONのダブルクォーテーションを表示する
 let g:vim_json_syntax_conceal = 0
@@ -261,25 +179,6 @@ endif
 "******************
 "" neocomplete
 "******************
-if s:meet_neocomplete_requirements()
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_ignore_case = 1
-  let g:neocomplete#enable_smart_case = 1
-  if !exists('g:neocomplete#keyword_patterns')
-	let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns._ = '\h\w*'
-else
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_ignore_case = 1
-  let g:neocomplcache_enable_smart_case = 1
-  if !exists('g:neocomplcache_keyword_patterns')
-	let g:neocomplcache_keyword_patterns = {}
-  endif
-  let g:neocomplcache_keyword_patterns._ = '\h\w*'
-  let g:neocomplcache_enable_camel_case_completion = 1
-  let g:neocomplcache_enable_underbar_completion = 1
-endif
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
@@ -287,7 +186,7 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "******************
 " tagbar
 "******************
-if ! empty(neobundle#get("tagbar"))
+if ! empty(dein#get("tagbar"))
   let g:tagbar_width = 20
   nn <silent> <leader>t :TagbarToggle<CR>
 endif
@@ -502,13 +401,11 @@ nnoremap sQ :<C-u>q!<CR>
 nnoremap <C-s> :<C-u>w<CR>
 nnoremap <C-n> :<C-u>noh<CR>
 nnoremap <C-f> :Fixmyjs<CR>
+nnoremap <C-c> :Ctags<CR>
+nnoremap <C-p> :PrevimOpen<CR>
 nnoremap <C-h> : if exists("syntax_on") <BAR>
                 \    syntax off <BAR>
                 \ else <BAR>
                 \    syntax enable <BAR>
                 \ endif<CR>
 
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
