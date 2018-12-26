@@ -6,6 +6,7 @@ all
 
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+npm install -g prettier-eslint
 ```
 
 and please add the contents of .bashrc_add to .bashrc
@@ -23,12 +24,6 @@ mac
 brew install ctags peco translate-shell
 ```
 
-in vim
-
-```
-:NeoBundleInstall
-```
-
 ## KeyBind
 ### tmux
 
@@ -43,9 +38,9 @@ prefix : <C+t>
 左 : l  
 右 : h  
 
-新規window：c
-前のwindowへ移動：p
-次のwindowへ移動：n
+新規window：c  
+前のwindowへ移動：p  
+次のwindowへ移動：n  
 session一覧：s
 
 #
@@ -124,6 +119,7 @@ fix-fomat(js)：(保存した後)<C+f>(prefixなし)
  - 選択した範囲を移動(VScodeだとalt？)
  - ファイル名表示、行番号表示
  - コメント切り替え
+ - 英語翻訳
 
  邪魔だったのでカーソルの点滅をなくし、対応する括弧を強調する際に、現在位置のカーソル色を見やすく変更した。
  
