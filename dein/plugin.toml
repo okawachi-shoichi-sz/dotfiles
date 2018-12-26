@@ -1,3 +1,7 @@
+##################################################################
+# general
+##################################################################
+
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
@@ -8,8 +12,25 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'ErichDonGubler/vim-sublime-monokai'
 
+
+###################################################################
+# filetree
+###################################################################
+
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+let g:NERDTreeChDirMode=2
+let NERDTreeShowHidden=1
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeWinSize = 20
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+nnoremap <silent> <leader>nf :NERDTreeFind<CR>
+noremap <leader>n :NERDTreeTabsToggle<CR>
+'''
 
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
@@ -17,13 +38,83 @@ depends = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
+hook_add = '''
+if has('mac')
+  let g:vimproc_dll_path = $HOME.'/.vim/bundle/vimproc.vim/lib/vimproc_mac.so'
+elseif has('win32')
+  let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win32.dll'
+elseif has('win64')
+  let g:vimproc_dll_path = $HOME . '.vim/bundle/vimproc/autoload/vimproc_win64.dll'
+elseif has('unix')
+  let g:vimproc_dll_path = $HOME."/.vim/bundle/vimproc.vim/lib/vimproc_linux64.so"
+endif
+'''
+
+
+#######################################################################
+# completion
+#######################################################################
 
 [[plugins]]
-repo = 'Shougo/neocomplete'
+repo = 'Shougo/neocomplcache'
+hook_add = '''
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_ignore_case = 1
+let g:neocomplcache_enable_smart_case = 1
+if !exists('g:neocomplcache_keyword_patterns')
+let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns._ = '\h\w*'
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+'''
 
-# スニペット
+
+########################################################################
+# Syntax check
+########################################################################
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_linters = {'javascript': ['eslint']}
+"let g:ale_fixers = {}
+"let g:ale_fixers['javascript'] = ['prettier-eslint']
+" let g:ale_fix_on_save = 1
+
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_enter = 0
+let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 0
+
+nmap <silent> <C-w>j <Plug>(ale_next_wrap)
+nmap <silent> <C-w>k <Plug>(ale_previous_wrap)
+'''
+
+
+#######################################################################
+# snippet
+#######################################################################
+
 [[plugins]]
 repo = 'Shougo/neosnippet'
+hook_add = '''
+imap <c-x>     <Plug>(neosnippet_expand_or_jump)
+smap <c-x>     <Plug>(neosnippet_expand_or_jump)
+xmap <c-x>     <Plug>(neosnippet_expand_target)
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)": pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)": "\<TAB>"
+if has('conceal')
+	set conceallevel=2 concealcursor=i
+endif
+'''
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
@@ -31,93 +122,50 @@ repo = 'Shougo/neosnippet-snippets'
 [[plugins]]
 repo = 'honza/vim-snippets'
 
+
+########################################################################
 # ctags
+########################################################################
+
 [[plugins]]
 repo = 'majutsushi/tagbar'
+hook_add = '''
+let g:tagbar_width = 20
+nn <silent> <leader>t :TagbarToggle<CR>
+'''
 
 [[plugins]]
 repo = 'szw/vim-tags'
+hook_add = '''
+let g:vim_tags_project_tags_command = "/usr/local/Cellar/ctags/5.8_1/bin/ctags -f .tags -R . 2>/dev/null"
+let g:vim_tags_gems_tags_command = "/usr/local/Cellar/ctags/5.8_1/bin/ctags -R -f .Gemfile.lock.tags `bundle show --paths` 2>/dev/null"
+let g:vim_tags_auto_generate = 1
+set tags+=.tags
+set tags+=.Gemfile.lock.tags
+
+if has("path_extra")
+  set tags+=tags;
+endif
+
+nnoremap <C-]> g<C-]>
+nnoremap <C-c> :Ctags<CR>
+'''
 
 [[plugins]]
 repo = 'soramugi/auto-ctags.vim'
 
-[[plugins]]
-repo = 'tpope/vim-endwise'
 
-# 構文チェック
-[[plugins]]
-repo = 'scrooloose/syntastic'
 
-[[plugins]]
-repo = 'pmsorhaindo/syntastic-local-eslint.vim'
+######################################################################
+# tools
+######################################################################
 
-# markdownプレビュー
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-
-[[plugins]]
-repo = 'kannokanno/previm'
-
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-
-# python構文・コーディング規約チェック
-[[plugins]]
-repo = 'nvie/vim-flake8'
-
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
-
-[[plugins]]
-repo = 'hynek/vim-python-pep8-indent'
-
-# indent可視化
+# visualize indent
 [[plugins]]
 repo = 'Yggdroot/indentLine'
-
-# HTML/CSS
-[[plugins]]
-repo = 'vim-scripts/HTML-AutoCloseTag'
-
-[[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-
-[[plugins]]
-repo = 'gorodinskiy/vim-coloresque'
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-
-[[plugins]]
-repo = 'tpope/vim-surround'
-
-[[plugins]]
-repo = 'pangloss/vim-javascript'
-
-[[plugins]]
-repo = 'ruanyl/vim-fixmyjs'
-
-# JSON syntax
-[[plugins]]
-repo = 'elzr/vim-json'
-
-[[plugins]]
-repo = 'leafgarland/typescript-vim'
-
-[[plugins]]
-repo = 'jason0x43/vim-js-indent'
-
-# mustache / handlebars
-[[plugins]]
-repo = 'mustache/vim-mustache-handlebars'
-
-# nodejs補完
-[[plugins]]
-repo = 'myhere/vim-nodejs-complete'
-
-# VCL
-[[plugins]]
-repo = 'smerrill/vcl-vim-plugin'
+hook_add = '''
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail']
+'''
 
 #submode
 [[plugins]]
@@ -140,4 +188,190 @@ repo = 'tomtom/tcomment_vim'
 #visualize move
 [[plugins]]
 repo = 't9md/vim-textmanip'
+hook_add = '''
+xmap <Space>d <Plug>(textmanip-duplicate-down)
+nmap <Space>d <Plug>(textmanip-duplicate-down)
+xmap <Space>D <Plug>(textmanip-duplicate-up)
+nmap <Space>D <Plug>(textmanip-duplicate-up)
+
+xmap <C-j> <Plug>(textmanip-move-down)
+xmap <C-k> <Plug>(textmanip-move-up)
+xmap <C-h> <Plug>(textmanip-move-left)
+xmap <C-l> <Plug>(textmanip-move-right)
+
+" toggle insert/replace with <F10>
+nmap <F10> <Plug>(textmanip-toggle-mode)
+xmap <F10> <Plug>(textmanip-toggle-mode)
+'''
+
+#surround
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+#hit num
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+hook_add = '''
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+" clear status
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+'''
+
+
+#####################################################
+# markdown
+#####################################################
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+hook_add = '''
+" mdの修飾記号を消さない
+let g:vim_markdown_conceal = 0
+" 折りたたまない
+let g:vim_markdown_folding_disabled = 1
+'''
+
+[[plugins]]
+repo = 'kannokanno/previm'
+hook_add = '''
+nnoremap <C-p> :PrevimOpen<CR>
+'''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+
+#######################################################
+# mustache / handlebars
+#######################################################
+
+[[plugins]]
+repo = 'mustache/vim-mustache-handlebars'
+hook_add = '''
+let g:mustache_abbreviations = 1
+'''
+
+
+#######################################################
+# VCL
+#######################################################
+
+[[plugins]]
+repo = 'smerrill/vcl-vim-plugin'
+
+
+#######################################################
+# HTML/CSS
+#######################################################
+
+[[plugins]]
+repo = 'vim-scripts/HTML-AutoCloseTag'
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repo = 'gorodinskiy/vim-coloresque'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+hook_add = '''
+let g:user_emmet_leader_key='<c-e>'
+let g:user_emmet_settings = {
+\  'variables': {
+\    'lang': "ja"
+\  },
+\ 'indentation': '  '
+\}
+'''
+
+
+#######################################################
+# python
+#######################################################
+
+[[plugins]]
+repo = 'nvie/vim-flake8'
+hook_add = '''
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+let g:PyFlakeDefaultComplexity=10
+'''
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+hook_add = '''
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+'''
+
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent'
+
+
+########################################################################
+# JavaScript
+########################################################################
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+hook_add = '''
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+'''
+
+[[plugins]]
+repo = 'jason0x43/vim-js-indent'
+
+[[plugins]]
+repo = 'ruanyl/vim-fixmyjs'
+hook_add = '''
+let g:fixmyjs_engine = 'eslint'
+let g:fixmyjs_legacy_jshint = 1
+nnoremap <C-f> :Fixmyjs<CR>
+'''
+
+# nodejs補完
+[[plugins]]
+repo = 'myhere/vim-nodejs-complete'
+hook_add = '''
+:setl omnifunc=jscomplete#CompleteJS
+if !exists('g:neocomplcache_omni_functions')
+  let g:neocomplcache_omni_functions = {}
+endif
+let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
+'''
+
+#ts
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+hook_add = '''
+autocmd BufRead,BufNewFile,BufReadPre *.ts set filetype=typescript
+autocmd FileType typescript setlocal sw=2 sts=2 ts=2 et
+let g:typescript_indent_disable = 1
+'''
+
+# JSON syntax
+[[plugins]]
+repo = 'elzr/vim-json'
+hook_add = '''
+"" JSONのダブルクォーテーションを表示する
+let g:vim_json_syntax_conceal = 0
+'''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+
+##########################################################################
+# golang
+##########################################################################
+[[plugins]]
+repo = 'fatih/vim-go'
+
 
