@@ -1,3 +1,7 @@
+"*****************************************************************************
+"" Install
+"*****************************************************************************"
+
 " プラグインが実際にインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim 本体
@@ -25,9 +29,11 @@ if !filereadable(sublimemonokai_vim)
   !mv ~/.vim/tmp/sublimemonokai/colors/sublimemonokai.vim ~/.vim/colors/
 endif
 
+
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
+
 let mapleader="\<Space>"
 
 ""column number
@@ -73,6 +79,7 @@ set whichwrap=h,l,b,s,<,>,[,]
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
+
 "**************************************************************************
 " plugins
 "*************************************************************************"
@@ -108,9 +115,11 @@ endif
 " Required:
 filetype plugin indent on
 
+
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
+
 syntax enable
 set background=dark
 colorscheme sublimemonokai
@@ -118,14 +127,18 @@ set ruler
 highlight StatusLine ctermfg=250 ctermbg=0
 highlight StatusLineNC ctermfg=0 ctermbg=250
 
+
 "*****************************************************************************
 "" Copy/Paste/Cut
 "*****************************************************************************
+
 set clipboard+=unnamed
+
 
 "*****************************************************************************
 " Indent Width
 "*****************************************************************************"
+
 set shiftwidth=2
 set tabstop=2
 
@@ -136,9 +149,11 @@ augroup END
 set autoindent
 set expandtab
 
+
 "*****************************************************************************
 " Large File
 "*****************************************************************************"
+
 set synmaxcol=256
 set nowrap
 
@@ -157,9 +172,11 @@ function LargeFile()
   autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
 endfunction
 
+
 "*****************************************************************************
 "TagHighLight
 "****************************************************************************"
+
 hi MatchParen term=standout ctermbg=24 ctermfg=white
 if has('vim_starting')
   " 挿入モード時に非点滅の縦棒タイプのカーソル
@@ -170,17 +187,21 @@ if has('vim_starting')
   let &t_SR .= "\e[4 q"
 endif
 
+
 "****************************************************************************
 " Translate
 "***************************************************************************"
+
 let s:trans_cmd = 'trans'
 let s:trans_opt = '-b :en --no-ansi -e google'
 exec 'command! -nargs=0 -range Trans <line1>,<line2>!' . s:trans_cmd . ' ' . s:trans_opt
 nnoremap <C-e> :Trans<CR>
 
+
 "*****************************************************************************
 " KeyMap
 "****************************************************************************"
+
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
@@ -214,6 +235,4 @@ nnoremap <C-h> : if exists("syntax_on") <BAR>
                 \ else <BAR>
                 \    syntax enable <BAR>
                 \ endif<CR>
-
-
 
