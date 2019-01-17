@@ -170,7 +170,7 @@ let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail']
 #submode
 [[plugins]]
 repo = 'kana/vim-submode'
-hook_add = '''
+hook_done_update = '''
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
 call submode#map('bufmove', 'n', '', '>', '<C-w>>')
