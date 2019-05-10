@@ -79,7 +79,7 @@ stty start undef
 :wq : wq  
 :q! : Q  
 
-Tagバーを表示 : <Space+t>(prefixなし)   
+Tagバーを表示 : <Space - t>(prefixなし)   
 
 vで選択した文字列を任意の文字で囲う　:　S<任意の文字>(prefixなし)  
 囲われた文字列を別の文字で囲う　:　cs<任意の文字>(prefixなし)  
@@ -90,8 +90,8 @@ vで選択して移動 ：　\<C-(hjkl)>(prefixなし)
 
 コメント切り替え ：　\<C- _ >\<C- _ >(prefixなし)  
 
-mdプレビュー：<C+p>(prefixなし)  
-ctag生成：<C+c>(prefixなし)  
+mdプレビュー：<C - p>(prefixなし)  
+ctag生成：<C - c>(prefixなし)  
 fix-fomat(js)：(保存した後)<C - f>(prefixなし)  
 カーソル上の１行を英語に翻訳： <C - e>(prefixなし)  
 スニペット展開：<C - x>(prefixなし)
