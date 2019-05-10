@@ -92,9 +92,9 @@ vで選択して移動 ：　\<C-(hjkl)>(prefixなし)
 
 mdプレビュー：<C+p>(prefixなし)  
 ctag生成：<C+c>(prefixなし)  
-fix-fomat(js)：(保存した後)<C+f>(prefixなし)  
-カーソル上の１行を英語に翻訳：¥<C-e>(prefixなし)  
-スニペット展開：<C-x>(prefixなし)
+fix-fomat(js)：(保存した後)<C - f>(prefixなし)  
+カーソル上の１行を英語に翻訳： <C - e>(prefixなし)  
+スニペット展開：<C - x>(prefixなし)
 
 ファイルツリー : <Space+n>(prefixなし)  
 ファイルツリー上で  
