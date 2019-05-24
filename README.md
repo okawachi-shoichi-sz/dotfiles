@@ -2,26 +2,16 @@
 
 windowsでの使用は想定してないのであしからず。
 
-all
-
-```
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-npm install -g prettier-eslint
-```
-
-and please add the contents of .bashrc_add to .bashrc
-
-
 ubuntu
 
 ```
-sudo apt-get install -y xsel ctags peco translate-shell
+./setUp.sh
 ```
 
 mac
 
 ```
-brew install ctags peco translate-shell
+./setUp_mac.sh
 ```
 
 ## KeyBind
