@@ -8,7 +8,7 @@ cp ./dein/.vimrc ~/.vimrc
 mkdir ~/.vim/rc/
 cp ./dein/plugin.toml ~/.vim/rc/plugin.toml
 cp ./.bashrc_add ~/.bashrc
-cp ./.bash_profile ~/.eash_profile
+cp ./.bash_profile ~/.bash_profile
 brew install nodebrew
 nodebrew setup
 nodebrew install-binary latest
