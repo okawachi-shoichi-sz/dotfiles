@@ -226,17 +226,12 @@ nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 #####################################################
 
 [[plugins]]
-repo = 'plasticboy/vim-markdown'
-hook_add = '''
-" mdの修飾記号を消さない
-let g:vim_markdown_conceal = 0
-" 折りたたまない
-let g:vim_markdown_folding_disabled = 1
-'''
+repo = 'tpope/vim-markdown'
 
 [[plugins]]
-repo = 'kannokanno/previm'
+repo = 'previm/previm'
 hook_add = '''
+let g:previm_enable_realtime = 1
 nnoremap <C-p> :PrevimOpen<CR>
 '''
 
