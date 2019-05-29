@@ -5,7 +5,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp .tmux.conf_mac ~/.tmux.conf
 brew install ctags peco translate-shell reattach-to-user-namespace
 cp ./dein/.vimrc ~/.vimrc
-mkdir ~/.vim/rc/
+mkdir -p ~/.vim/rc/
 cp ./dein/plugin.toml ~/.vim/rc/plugin.toml
 cp ./.bashrc_add ~/.bashrc
 cp ./.bash_profile ~/.bash_profile
@@ -15,4 +15,4 @@ nodebrew install-binary latest
 nodebrew use latest
 npm install -g prettier-eslint
 brew install golang
-mkdir ~/src/github.com/
+mkdir -p ~/src/github.com/
